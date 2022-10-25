@@ -1,0 +1,4 @@
+/.env.local
+/.env
+/config/configdeploy.json
+/client.rest

@@ -1,4 +1,4 @@
-GET http://localhost:4000/getall
+GET http://localhost:4000/voucher
 
 ###
 PUT http://localhost:4000/voucher/edit/4
