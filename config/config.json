@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "u197709460_admin",
-    "password": "~Lolipop126181",
-    "database": "u197709460_srvrtopupgame",
+    "username": "root",
+    "password": null,
+    "database": "server_voucherweb1",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
