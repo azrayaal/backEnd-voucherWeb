@@ -18,10 +18,12 @@ const voucherRouter = require('./routes/voucherRouter.js');
 const coinRouter = require('./routes/coinRouter.js');
 const paymentRouter = require('./routes/paymentRouter.js');
 const userRouter = require('./routes/userRouter.js');
+const transactionRouter = require('./routes/transactionsRouter.js');
 app.use('/voucher', voucherRouter);
 app.use('/coin', coinRouter);
 app.use('/payment', paymentRouter);
 app.use('/user', userRouter);
+app.use('/transaction', transactionRouter);
 
 // api
 app.use(`${URL}/voucher`, voucherRouter);

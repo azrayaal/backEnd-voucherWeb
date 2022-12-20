@@ -31,11 +31,11 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 db.payment = require('./payment.js')(sequelize, DataTypes);
 db.coin = require('./coin.js')(sequelize, DataTypes);
 db.voucher = require('./voucher.js')(sequelize, DataTypes);
+db.transactions = require('./transactions.js')(sequelize, DataTypes);
 
 db.voucher.hasMany(db.coin, {
   foreignKey: 'voucher_id',

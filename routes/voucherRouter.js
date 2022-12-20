@@ -14,6 +14,8 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// const { isLoginUser } = require('../controller/auth.js');
+
 router.get('/', voucherController.getData);
 router.post('/', upload.single('picture'), voucherController.createData);
 router.get('/getby/:id', voucherController.getDataById);

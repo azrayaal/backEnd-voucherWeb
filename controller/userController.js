@@ -2,6 +2,7 @@ const db = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = db.user;
+const config = require('../config/index.js');
 require('dotenv').config();
 
 const getAllUser = async (req, res) => {
@@ -38,19 +39,34 @@ const signin = async (req, res) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    const user = { email: email };
-
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-
-    const getData = await User.findOne({
+    await User.findOne({
       where: { email: email },
+    }).then((user) => {
+      if (user) {
+        const checkPassword = bcrypt.compareSync(password, user.password);
+        if (checkPassword) {
+          const token = jwt.sign(
+            {
+              user: {
+                id: user.id,
+                email: user.email,
+                name: user.name,
+                picture: user.picture,
+              },
+            },
+            config.jwtKey
+          );
+          return res.status(200).json({
+            data: { token },
+            user,
+          });
+        } else {
+          res.status(400).send('Password Salah Hayoo tebak lagi');
+        }
+      } else {
+        res.status(400).send('Email tidak terdaftar');
+      }
     });
-    if (!getData) res.status(400).send('Email tidak terdaftar');
-
-    const resultLogin = bcrypt.compareSync(password, getData.password);
-    if (!resultLogin) res.status(400).send('Password Salah Hayoo tebak lagi');
-
-    return res.send({ accessToken: accessToken, message: 'Berhasil Login' });
   } catch (error) {
     console.log(error);
     res.status(400).send('error bos');
