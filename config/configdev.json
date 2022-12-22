@@ -14,9 +14,9 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
+    "username": "azrayaal_db",
+    "password": "Lolip0p24",
+    "database": "azrayaal_topup_game",
     "host": "127.0.0.1",
     "dialect": "mysql"
   }
